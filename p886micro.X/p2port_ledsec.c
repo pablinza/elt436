@@ -1,6 +1,6 @@
 /* Programa para manejar los puertos entrada y salida digital
  secuenciador de 8 led con dezplazamiento izquierda o derecha
- presionando pulsador 1 o 2 
+ presionando pulsador 1 o 2. 
  */
 #pragma config FOSC = INTRC_NOCLKOUT, WDTE = OFF, LVP = OFF, MCLRE = OFF
 #include <xc.h>
