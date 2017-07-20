@@ -2,7 +2,7 @@
  * declaracion de los fusibles y definiciones
  * se creara la libreria rutinas como rutinas.h
  * se agregara codigo de configuracion para el oscilador
- * Se aprendera a utilizar variables bit para pin.
+ * Se aprendera a utilizar variables bit para un pin.
  */
 #pragma config FOSC = INTRC_NOCLKOUT, WDTE = OFF, LVP = OFF, MCLRE = OFF
 #include <xc.h>
