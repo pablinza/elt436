@@ -21,27 +21,106 @@ ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
 INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS
 OR LOST DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS.
 *******************************************************************************/
-#define DelayForTCY() delayus(1) //req 1uS
-#define DelayForTCY10() delayms(1) //req 100us
-#define DelayPORLCD() delayms(15)//era 15ms
-#define DelayLCD() delayms(5)//era 5ms
-/* MAY BE AND*/
-#define DON         0x0F
-#define DOFF        0x0B
-#define CURSOR_ON   0x0F
-#define CURSOR_OFF  0x0D
-#define BLINK_ON    0x0F
-#define BLINK_OFF   0x0E
-/* END OF MAY BE AND*/
-#define CLEAR       0x01
-#define HOME        0x02
-#define LINES2		0x28	// Function set 2l 5x7
-#define LINES1		0x20	// Function set 1l
-#define LCDWriteCmd LCDSet
-#define LCDWriteData LCDPutc
-void LCDWriteData(char data);
-void LCDWriteCmd(char cmd);
-void LCDGoto(char DDaddr);
-void LCDSetup(char mode);
-void LCDPuts(char *str);
-#include "lcd.c"
+void LCDWriteData(char data)
+{
+    DelayLCD();
+    LCD_TRIS &= 0xf0;
+    LCD_PORT &= 0xf0;
+    LCD_PORT | = (data>>4) & 0x0f;
+    LCD_RS = 1;
+    DelayForTCY();
+    LCD_EN = 1;                      // Clock command in
+    DelayForTCY();
+    LCD_EN = 0;
+    LCD_PORT &= 0xf0;
+    LCD_PORT |= data & 0x0f;
+    LCD_EN = 1;                      // Clock command in
+    DelayForTCY();
+    LCD_EN = 0;
+    LCD_TRIS |= 0x0f;
+}
+void LCDWriteCmd(char cmd)
+{
+    DelayLCD();
+    LCD_TRIS &= 0xf0;
+    LCD_PORT &= 0xf0;
+    LCD_PORT | = (cmd >> 4) & 0x0f;
+    LCD_RS = 0;                     // Set control bits
+    DelayForTCY();
+    LCD_EN = 1;                      // Clock nibble into LCD
+    DelayForTCY();
+    LCD_EN = 0;
+    LCD_PORT &= 0x0f;
+    LCD_PORT |= cmd & 0x0f;
+    LCD_EN = 1;                      // Clock nibble into LCD
+    DelayForTCY();
+    LCD_EN = 0;
+    LCD_TRIS |= 0x0f;
+}
+void LCDGoto(char DDaddr)
+{
+    DelayLCD();
+    LCD_TRIS &= 0xf0;                 // Make port output
+    LCD_PORT &= 0xf0;                      // and write upper nibble
+    LCD_PORT |= ((DDaddr | 0b10000000) >> 4) & 0x0f;
+    LCD_RS = 0;
+    DelayForTCY();
+    LCD_EN = 1;                              // Clock the cmd and address in
+    DelayForTCY();
+    LCD_EN = 0;
+    LCD_PORT &= 0xf0;                      // Write lower nibble
+    LCD_PORT |= DDaddr & 0x0f;
+    DelayForTCY();
+    LCD_EN = 1;                              // Clock the cmd and address in
+    DelayForTCY();
+    LCD_EN = 0;
+    LCD_TRIS |= 0x0f;                 // Make port input
+}
+void LCDSetup(char mode)
+{
+    LCD_RS = 0;                     // Register select pin made low
+    LCD_EN = 0;                      // Clock pin made low
+    DelayPORLCD();// Delay for 15ms to allow for LCD Power on reset
+    LCD_TRIS &= 0xf0;
+    LCD_PORT &= 0xf0;
+    LCD_PORT |= 0b00000011;        // Function set cmd(4-bit interface)
+    LCD_EN = 1;                              // Clock the cmd and address in
+    DelayForTCY();
+    LCD_EN = 0;
+    DelayLCD();
+    LCD_PORT &= 0xf0;              // Function set cmd(4-bit interface)
+    LCD_PORT |= 0b00000011;
+    LCD_EN = 1;                              // Clock the cmd and address in
+    DelayForTCY();
+    LCD_EN = 0;
+    DelayForTCY10();
+    LCD_PORT &= 0xf0;              // Function set cmd(4-bit interface)
+    LCD_PORT |= 0b00000011;
+    LCD_EN = 1;                              // Clock the cmd and address in
+    DelayForTCY();
+    LCD_EN = 0;
+    DelayForTCY10();
+    LCD_PORT &= 0xf0;              // Inicial set cmd(4-bit interface)
+    LCD_PORT |= 0b00000010;
+    LCD_EN = 1;                              // Clock the cmd and address in
+    DelayForTCY();
+    LCD_EN = 0;
+    DelayForTCY10();
+    LCDWriteCmd(mode);  // Function set 2l 5x7
+    //LCDWriteCmd(0b00100000);  // Function set 1l 5x7
+    LCDWriteCmd(DOFF);  // Clear display
+    LCDWriteCmd(CLEAR); // Turn the display on then off
+    LCDWriteCmd(DON & CURSOR_OFF & BLINK_OFF);// Display ON/Blink ON
+    LCDWriteCmd(0b00000100);//Cursor Shift
+    LCDWriteCmd(0b00000110); //Cursor Inc
+    LCDWriteCmd(HOME);
+    LCDGoto(0);         // Set Display data ram address to 0
+}
+void LCDPuts(char *str)
+{
+    while(*str)                  // Write data to LCD up to null
+    {
+    	LCDWriteData(*str); // Write character to LCD
+        str++;               // Increment buffer
+    }
+}
