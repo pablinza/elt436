@@ -110,7 +110,7 @@ void TMR0Setup(char cs, char pre)
         OPTION_REGbits.PS = pre;
     }
 }
-void TMR0Set(char value)
+void TMR0Setval(char value)
 {
     INTCONbits.T0IF = 0;
     TMR0 = value; //256 - (n / PRE) * (_XTAL_FREQ / 4)
@@ -130,7 +130,7 @@ void TMR1Setval(unsigned int value)
     TMR1L = value; //65536 - (n / PRE) * (_XTAL_FREQ / 4)
     TMR1H = (char) value >> 8;
     PIR1bits.TMR1IF = 0;
-    T1CONbits.TMR1ON = 0;
+    T1CONbits.TMR1ON = 1;
 }
 unsigned int TMR1Getval()
 {
