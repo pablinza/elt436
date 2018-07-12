@@ -12,23 +12,23 @@ unsigned int tiempo = 100;    //Variable de 16-bit para almacenar retardo
 char leds;  //Variable de 8-bit para los leds
 void rotA() //Procedimiento rotacion A
 {
-    leds = leds << 1;
-    if(leds == 0)
+    leds = leds << 1; //desplaza una posicion bit a la izquierda
+    if(leds == 0) //Si todos los bits son 0
     {
-        leds = 0b00000001;
+        leds = 0b00000001; //Coloca en alto solo el bit0
     }
-    PORTD = ~leds;
+    PORTD = ~leds; //Carga el PORTD con el valor complemento de la variable leds
     __delay_ms(tiempo);
 }
 void rotB() //Procedimiento rotacion B
 {
-    leds = leds >> 1;
-    if(leds == 0)
+    leds = leds >> 1; //desplaza una posicion bit a la derecha
+    if(leds == 0) //Si todos los bits con 0
     {
-        leds = 0b10000000;
+        leds = 0b10000000; //Coloca en alto el bit7
     }
-    PORTD = ~leds;
-    __delay_ms(tiempo);
+    PORTD = ~leds; //Carga el PORTD con el valor complemento de la variable leds
+    __delay_ms(tiempo); 
 }
 void main(void) //Funcion principal
 {
