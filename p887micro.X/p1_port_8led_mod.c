@@ -8,7 +8,6 @@
 #pragma config FOSC = INTRC_NOCLKOUT, WDTE = OFF, LVP = OFF
 #include <xc.h>
 #define _XTAL_FREQ 4000000
-unsigned int tiempo = 100;    //Variable de 16-bit para almacenar retardo
 char leds;  //Variable de 8-bit para los leds
 void rotA() //Procedimiento rotacion A
 {
@@ -18,7 +17,7 @@ void rotA() //Procedimiento rotacion A
         leds = 0b00000001; //Coloca en alto solo el bit0
     }
     PORTD = ~leds; //Carga el PORTD con el valor complemento de la variable leds
-    __delay_ms(tiempo);
+    __delay_ms(100);
 }
 void rotB() //Procedimiento rotacion B
 {
@@ -28,7 +27,7 @@ void rotB() //Procedimiento rotacion B
         leds = 0b10000000; //Coloca en alto el bit7
     }
     PORTD = ~leds; //Carga el PORTD con el valor complemento de la variable leds
-    __delay_ms(tiempo); 
+    __delay_ms(100); 
 }
 void main(void) //Funcion principal
 {
