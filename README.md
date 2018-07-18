@@ -1,20 +1,15 @@
 # elt436
      Proyecto de Practicas para la Materia de Microcontroladores U.E.B
 Carpeta de la materia Microcontroladores U.E.B con los ejercicios practicos en Laboratorio. 
-Proyecto creado en MPLABX utilizando el compilador XC8 y los PIC16F886/PIC16F687
+Proyecto creado en MPLABX utilizando el compilador XC8 y los PIC16F886/PIC16F687/PIC16F887
 *******************************************************************************************
-p1osc_blink.c   Destello de un led a un intervalo determinado.
+Los archivos con extension .c corresponden al codigo fuente de un programa o practica
 
-p2port_ledsec.c Secuencia de leds de acuerdo a pulsadores de entrada.
+Los archivos con extension .h y .c con mismo nombre, son parte de una libreria
 
-p3port_7seg.c   Contados de dos digitos con display de 7 segmentos.
+Los archivos con extension .png corresponden a una imagen de esquema de circuito
 
-p4port_lcd.c    Uso del modulo LCD para un contador.
+Las practicas estan ordenadas de acuerdo a su nombre de archivo y solo se require 
+cambiar el programa principal .c en el proyecto para la compilacion.
 
-p5port_keypad.c Uso de un teclado matricial con un LCD
-
-p6int_external.c Manejo de la interrupcion externa INT/RB0
-
-Deben estar instalados MPLABX+XC8, por defecto el programa principal es main.c, para
-compilar debe agregar como archivo fuente los ejemplos citados anteriormente.
-Se agregaron los archivos de diseno para Proteus V7. los mismo tienen extension .dsn
+Deben contar con el IDE MPLABX y su compilador XC8 instalados en el ordenador.
