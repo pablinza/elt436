@@ -7,6 +7,67 @@
 *    Summary: Es una libreria de funciones y procedimientos de uso base *
 *			  para los PIC serie 16F68x empleados en la materia ELT-436.*
 ************************************************************************/
+void OSCSetup()
+{
+#if _XTAL_FREQ == 8000000
+    OSCCONbits.IRCF = 7;
+#elif _XTAL_FREQ == 4000000
+    OSCCONbits.IRCF = 6;
+#elif _XTAL_FREQ == 2000000
+    OSCCONbits.IRCF = 5;
+#elif _XTAL_FREQ == 1000000
+    OSCCONbits.IRCF = 4;
+#elif _XTAL_FREQ == 500000
+    OSCCONbits.IRCF = 3;
+#elif _XTAL_FREQ == 250000
+    OSCCONbits.IRCF = 2;
+#elif _XTAL_FREQ == 125000
+    OSCCONbits.IRCF = 1;
+#elif _XTAL_FREQ == 31000
+    OSCCONbits.IRCF = 0;
+#else 
+    #warning "Oscilador Interno no ajustado a Frecuencia"
+#endif
+#if _XTAL_FREQ < 125000
+    while(!OSCCONbits.LTS);
+#else
+    while(!OSCCONbits.HTS);   
+#endif
+}
+
+#ifndef USART_LIB
+void UARTSetup(unsigned int baud)
+{
+    unsigned int brg;
+    TXSTAbits.BRGH = 1;
+    BAUDCTLbits.BRG16 = 1;
+    brg = _XTAL_FREQ/(4*(baud + 1));
+    SPBRG = brg;
+    SPBRGH = brg >> 8;
+    TXSTAbits.TXEN = 1;
+    RCSTAbits.CREN = 1;
+    RCSTAbits.SPEN = 1;
+}
+void UARTCheck()
+{
+    if(RCSTAbits.OERR)
+    {
+        RCSTAbits.CREN = 0;
+        NOP();
+        RCSTAbits.CREN = 1;
+    }	
+}
+void putch(char byte)
+{
+	while(PIR1bits.TXIF == 0);
+	TXREG = byte;
+}
+char getch()
+{
+	while(PIR1bits.RCIF == 0);
+	return RCREG;
+}
+#endif
 void EEWrite(char addr, char data)
 {
     char GIEbit;
@@ -28,10 +89,9 @@ char EERead(char addr)
     EECON1bits.RD = 1;
     return EEDAT;
 }
-#ifdef _12F675
 void ADCSetup()
 {
-    ANSELbits.ADCS = 0b011; //Ajusta el TAD a FRC
+    ADCON1bits.ADCS = 0b11; //Ajusta el TAD a FRC
     ADCON0bits.VCFG = 0; //0=VDD    1=RA1/Vref
     ADCON0bits.ADON = 1;
 }
@@ -48,7 +108,6 @@ unsigned int ADCRead(char ch)
     value = value >> 6;
     return value;
 }
-#endif
 void TMR0Setup(char cs, char pre)
 {
     OPTION_REGbits.T0CS = cs;
@@ -86,3 +145,16 @@ unsigned int TMR1Getval()
     value |= TMR1L; 
     return value;
 }
+#ifdef _P16F690
+void TMR2Setup(char pre, char post)
+{
+    T2CONbits.T2CKPS = pre;
+    T2CONbits.TOUTPS = post;
+    PIR1bits.TMR2IF = 0;
+}
+char TMR2Gettimer()
+{
+    return(TMR2);
+}
+#endif
+
