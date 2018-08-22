@@ -7,7 +7,7 @@
 #include "peripheral.h"
 void main(void)
 {
-    ANSEL = 0;	//AN0-AN7 en modo digital
+    ANSEL = 0;	//AN0-AN3 en modo digital
     TRISIObits.TRISIO0 = 0;	//GP0 como salida
     while(1)
     {
