@@ -33,6 +33,8 @@ void OSCSetup()
     while(!OSCCONbits.HTS);   
 #endif
 }
+
+#ifndef USART_LIB
 void UARTSetup(unsigned int baud)
 {
     unsigned int brg;
@@ -64,6 +66,7 @@ char getch()
 	while(PIR1bits.RCIF == 0);
 	return RCREG;
 }
+#endif
 void EEWrite(char addr, char data)
 {
     char GIEbit;
@@ -98,7 +101,7 @@ unsigned int ADCRead(char ch)
 {
     unsigned int value;
     ADCON0bits.CHS = ch;
-    _delay(10); //2TAD
+    _delay(20); //2TAD
     ADCON0bits.GO = 1;
     while(ADCON0bits.GO);
     value = ADRESH;
@@ -107,3 +110,51 @@ unsigned int ADCRead(char ch)
     value = value >> 6;
     return value;
 }
+void TMR0Setup(char cs, char pre)
+{
+    OPTION_REGbits.T0CS = cs;
+    OPTION_REGbits.T0SE = 0; //Counter 0=rising 1=falling
+    if(pre < 8)
+    {    
+        OPTION_REGbits.PSA = 0;
+        OPTION_REGbits.PS = pre;
+    }
+    TMR0 = 0;
+    INTCONbits.T0IF = 0;
+}
+char TMR0Getval()
+{
+    return TMR0;
+}
+void TMR1Setup(char cs, char pre)
+{
+    T1CONbits.TMR1CS = cs;
+    T1CONbits.T1CKPS = pre;
+    TMR1H = 0;
+    TMR1L = 0;
+    PIR1bits.TMR1IF = 0;
+}
+void TMR1Setval(unsigned int value)
+{
+    TMR1L = value;
+    TMR1H = (char) value >> 8;
+}
+unsigned int TMR1Getval()
+{
+    unsigned int value;
+    value = TMR1H;
+    value = value << 8;
+    value |= TMR1L; 
+    return value;
+}
+void TMR2Setup(char pre, char post)
+{
+    T2CONbits.T2CKPS = pre;
+    T2CONbits.TOUTPS = post;
+    PIR1bits.TMR2IF = 0;
+}
+char TMR2Gettimer()
+{
+    return(TMR2);
+}
+

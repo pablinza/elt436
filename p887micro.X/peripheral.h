@@ -24,12 +24,13 @@ void OSCSetup();					//Ajusta el oscilador interno a _XTAL_FREQ
 /************************************************
  * 				Modulo USART					*
  ************************************************/
+#ifndef USART_LIB
 #define getche getch
 void UARTSetup(unsigned int baud);	//Inicia y configura la velocidad
 void UARTCheck();					//Verifica si hay errores y reinicia el receptor
 void putch(char byte);				//Envia un byte por el modulo USART
 char getch();						//Recibe un byte del modulo USART
-
+#endif
 /************************************************
  * 				Modulo EEPROM					*
  ************************************************/
@@ -41,5 +42,62 @@ char EERead(char addr);				//Lee un byte de la memoria EEPROM
  ************************************************/
 void ADCSetup(); 
 unsigned int ADCRead(char ch);
+/************************************************
+ * 			Modulo TIMER0           			*
+ ************************************************/
+#define COUNTER 1
+#define TIMER 0
+#define T0PRE256 7
+#define T0PRE128 6
+#define T0PRE64 5
+#define T0PRE32 4
+#define T0PRE16 3
+#define T0PRE8 2
+#define T0PRE4 1
+#define T0PRE2 0
+#define T0PRE1 8
+void TMR0Setup(char cs, char pre);
+#define TMR0Setval(x) TMR0 = x
+char TMR0Getval();
+/********************************************
+ * 			Modulo TIMER1					*
+ ********************************************/
+#define T1PRE8 3
+#define T1PRE4 2
+#define T1PRE2 1
+#define T1PRE1 0
+void TMR1Setup(char cs, char pre);
+#define TMR1Start() T1CONbits.TMR1ON = 1
+#define TMR1Stop() T1CONbits.TMR1ON = 0
+void TMR1Setval(unsigned int value);
+unsigned int TMR1Getval();
+/********************************************
+ * 			Modulo TIMER2					*
+ ********************************************/
+#define T2PRE1 0
+#define T2PRE4 1
+#define T2PRE16 2
+#define T2POS1 0
+#define T2POS2 1
+#define T2POS3 2
+#define T2POS4 3
+#define T2POS5 4
+#define T2POS6 5
+#define T2POS7 6
+#define T2POS8 7
+#define T2POS9 8
+#define T2POS10 9
+#define T2POS11 10
+#define T2POS12 11
+#define T2POS13 12
+#define T2POS14 13
+#define T2POS15 14
+#define T2POS16 15
+void TMR2Setup(char pre, char post);
+#define TMR2Start() T2CONbits.TMR2ON = 1
+#define TMR2Stop() T2CONbits.TMR2ON = 0
+#define TMR2Setperiod(x) PR2 = x
+#define TMR2Setval(x) TMR2 = x
+char TMR2Gettimer();
 
 #include "peripheral.c"
