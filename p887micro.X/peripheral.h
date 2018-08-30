@@ -25,12 +25,12 @@ void OSCSetup();					//Ajusta el oscilador interno a _XTAL_FREQ
  * 				Modulo USART					*
  ************************************************/
 #ifndef USART_LIB
+void USARTSetup(unsigned int baud);	//Inicia y configura la velocidad
+void USARTCheck();					//Verifica si hay errores y reinicia el receptor
+#endif
 #define getche getch
-void UARTSetup(unsigned int baud);	//Inicia y configura la velocidad
-void UARTCheck();					//Verifica si hay errores y reinicia el receptor
 void putch(char byte);				//Envia un byte por el modulo USART
 char getch();						//Recibe un byte del modulo USART
-#endif
 /************************************************
  * 				Modulo EEPROM					*
  ************************************************/
@@ -98,6 +98,6 @@ void TMR2Setup(char pre, char post);
 #define TMR2Stop() T2CONbits.TMR2ON = 0
 #define TMR2Setperiod(x) PR2 = x
 #define TMR2Setval(x) TMR2 = x
-char TMR2Gettimer();
+char TMR2Getval();
 
 #include "peripheral.c"

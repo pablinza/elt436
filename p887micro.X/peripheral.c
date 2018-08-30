@@ -35,7 +35,7 @@ void OSCSetup()
 }
 
 #ifndef USART_LIB
-void UARTSetup(unsigned int baud)
+void USARTSetup(unsigned int baud)
 {
     unsigned int brg;
     TXSTAbits.BRGH = 1;
@@ -47,7 +47,7 @@ void UARTSetup(unsigned int baud)
     RCSTAbits.CREN = 1;
     RCSTAbits.SPEN = 1;
 }
-void UARTCheck()
+void USARTCheck()
 {
     if(RCSTAbits.OERR)
     {
@@ -56,6 +56,7 @@ void UARTCheck()
         RCSTAbits.CREN = 1;
     }	
 }
+#endif
 void putch(char byte)
 {
 	while(PIR1bits.TXIF == 0);
@@ -66,7 +67,6 @@ char getch()
 	while(PIR1bits.RCIF == 0);
 	return RCREG;
 }
-#endif
 void EEWrite(char addr, char data)
 {
     char GIEbit;
@@ -153,7 +153,7 @@ void TMR2Setup(char pre, char post)
     T2CONbits.TOUTPS = post;
     PIR1bits.TMR2IF = 0;
 }
-char TMR2Gettimer()
+char TMR2Getval()
 {
     return(TMR2);
 }
