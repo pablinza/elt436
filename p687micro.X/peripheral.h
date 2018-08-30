@@ -152,7 +152,7 @@ void TMR2Setup(char pre, char post)
     T2CONbits.TOUTPS = post;
     PIR1bits.TMR2IF = 0;
 }
-char TMR2Gettimer()
+char TMR2Getval()
 {
     return(TMR2);
 }
