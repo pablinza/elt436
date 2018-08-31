@@ -38,7 +38,7 @@ void main(void) //Funcion principal
     OSCSetup();
     ANSEL = 0;  //Configura los pines AN0-AN7 en modo digital
     ANSELH = 0; //Configura los pines AN8-AN15 en modo digital
-    UARTSetup(9600);
+    USARTSetup(9600);
     PIE1bits.RCIE = 1;  //Activa la interrupcion de recepcion USART
     INTCONbits.PEIE = 1;    //Activa la interrrupcion de perifericos
     INTCONbits.GIE = 1; //Activa la interrupcion global
@@ -54,7 +54,7 @@ void main(void) //Funcion principal
         }  
         printf("%u,%u\n", val1, val2); //Envia el mensaje con los contadores
         __delay_ms(1000);   //Retardo de 1 segundo
-        UARTCheck();    //Verifica y limpia errores de recepcion USART
+        USARTCheck();    //Verifica y limpia errores de recepcion USART
         if(rxok == 1)   //Si hay un mensaje recibido
         {
             rxok = 0;   //Limpia la bandera
