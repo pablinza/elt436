@@ -20,7 +20,7 @@ void main()
     TRISCbits.TRISC0 = 0;//Configura como salida el pin RC0
     PORTCbits.RC0 = 0;  //Coloca en 0 el pin RC0 
     OPTION_REGbits.nRBPU = 0;   //Activa las pull-ups del PORTB
-    UARTSetup(9600);    //Configura el UART a 9600bps
+    USARTSetup(9600);    //Configura el UART a 9600bps
     while(1)
     {
         if(PORTBbits.RB0 != pinval)  //Verifica si pulsador es presionado
@@ -39,7 +39,7 @@ void main()
             if(recbyte == '0')	
                 PORTCbits.RC0 = 0;	//Apaga el LED
         }
-        UARTCheck();	//Este procedimiento verifica y limpia posibles errores de UART
+        USARTCheck();	//Este procedimiento verifica y limpia posibles errores de UART
         __delay_ms(10);
     }
     
