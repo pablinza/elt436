@@ -17,7 +17,7 @@ void main(void)
     ANSELH = 0;	//AN8-AN12 en modo digital
     ANSELbits.ANS0 = 1; //Activa entrada canal0
     ADCSetup(); //Configura el modulo ADC
-    UARTSetup(9600);    //Configura el modulo Serial
+    USARTSetup(9600);    //Configura el modulo Serial
     while(1)
     {
         
