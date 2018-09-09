@@ -97,12 +97,15 @@ void ADCSetup()
     ADCON1bits.VCFG1 = 0; //Ref+    0=VDD   1=AN3
     ADCON0bits.ADON = 1;
 }
-unsigned int ADCRead(char ch)
+void ADCStart(char ch)
+{
+    ADCON0bits.CHS = ch;
+    __delay_us(20); //2TAD + TCQ
+    ADCON0bits.GO = 1;
+}
+unsigned int ADCRead()
 {
     unsigned int value;
-    ADCON0bits.CHS = ch;
-    _delay(20); //2TAD
-    ADCON0bits.GO = 1;
     while(ADCON0bits.GO);
     value = ADRESH;
     value = (value << 8) & 0xFF00;

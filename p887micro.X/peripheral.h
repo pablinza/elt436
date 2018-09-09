@@ -41,7 +41,8 @@ char EERead(char addr);				//Lee un byte de la memoria EEPROM
  * 			Modulo Conversor ADC				*
  ************************************************/
 void ADCSetup(); 
-unsigned int ADCRead(char ch);
+void ADCStart(char ch);
+unsigned int ADCRead();
 /************************************************
  * 			Modulo TIMER0           			*
  ************************************************/
