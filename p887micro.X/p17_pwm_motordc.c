@@ -28,7 +28,6 @@ void main(void)
     while(1)
     {
         ADCStart(0);    //Inicia captura del canal 0
-        __delay_us(20); //Espera requerida para completar la captura
         adval = ADCRead();//Lee el valor ADC(valor entre 0-1023)
         if(adval >= 512) //Control a la mitad del POT para adelante
         {
