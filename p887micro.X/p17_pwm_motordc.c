@@ -4,7 +4,7 @@
  * Se utilizan los pines RD7(P1D) forward, RD5(P1B) back
  */
 #pragma config FOSC=INTRC_NOCLKOUT, WDTE = OFF, LVP = OFF
-#define _XTAL_FREQ 8000000
+#define _XTAL_FREQ 4000000
 #include <xc.h>
 #include <stdlib.h>
 #include "peripheral.h"
@@ -80,7 +80,7 @@ void CCPSetupPWM1() //Frecuencia aproximada de 1KHz
     CCP1CONbits.P1M = 3;//0 = Single, 1=Forward, 2=Half, 3=Back
     //Resolucion = log(4*(PR2+1))/log(2), si PR2=255 (10bit)
     PR2 = 255;  //10bit PWM(T) = [(PR2+1) * 4 * T2CKPS] / Fosc, es 1.02ms
-    T2CONbits.T2CKPS = 0; //Prescala 0 = 1:1, 1 = 1:4, 2 = 1:16
+    T2CONbits.T2CKPS = 1; //Prescala 0 = 1:1, 1 = 1:4, 2 = 1:16
     T2CONbits.TMR2ON = 1;   //Arranca el Timer   
     while(PIR1bits.TMR2IF == 0);//Espera un nuevo ciclo
     TRISDbits.TRISD5 = 0;   //pin CCPx P1B
