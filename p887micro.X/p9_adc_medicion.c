@@ -22,7 +22,8 @@ void main(void)
     ADCSetup();	//Configura e iniciar el modulo ADC
     while(1)
     {
-        pot = ADCRead(0); //Lectura y conversion del canal 0
+        ADCStart(0);    //Inicia la captura del canal 0
+        pot = ADCRead(); //Lectura y conversion
         if(pot < 200) //si port es menor a 1V
         {    
             PORTBbits.RB0 = 1; //Enciende Rb0
