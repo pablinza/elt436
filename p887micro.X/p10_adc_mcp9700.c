@@ -21,7 +21,8 @@ void main(void)
     while(1)
     {
         
-        tem = ADCRead(0) - 100; //Lectura y conversion del canal 0
+        ADCStart(0);    //Inicia la captura del canal 0
+        tem = ADCRead() - 100; //Lectura y conversion del canal 0
         temsum = temsum + tem;
         c++;    //Incrementa el contador
         if(c == 50) //Si el contador es 50
