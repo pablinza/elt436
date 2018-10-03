@@ -11,14 +11,13 @@
  *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (c) 2016 released beMicro.  All rights reserved.
-beMicro autoriza el uso, modificacion,copia y distribucion de este software.
+Derechos de Autor PCZ pablinza@me.com.
+Se autoriza el uso, copia y distribucion de este software con fines educativos
 
-SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
-EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF
-ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY 
-INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS
-OR LOST DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS.
+Favor tomar en cuenta lo siguiente:
+El software y documentacion provisto no implica garantia alguna en cuanto al uso 
+y sus posibles resultados directos o indirectos, incluyendo posibles incidentes, 
+daños personales, daños materiales, perdida de informacion, etc.
 *******************************************************************************/
 #define DelayForTCY() __delay_us(1) //req 1uS
 #define DelayForTCY10() __delay_ms(1) //req 100us
@@ -36,11 +35,11 @@ OR LOST DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS.
 #define HOME        0x02
 #define LINES2		0x28	// Function set 2l 5x7
 #define LINES1		0x20	// Function set 1l
-#define LCDWriteCmd LCDSet
-#define LCDWriteData LCDPutc
-void LCDWriteData(char data);
-void LCDWriteCmd(char cmd);
+#define LCDPutc LCDWritechar
+void LCDWritechar(char data);
+void LCDSet(char cmd);
 void LCDGoto(char DDaddr);
 void LCDSetup(char mode);
-void LCDPuts(char *str);
+void LCDWrite(char *str);
+void LCDPuts(const char *str);
 #include "lcd.c"

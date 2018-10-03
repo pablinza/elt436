@@ -11,16 +11,15 @@
  *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (c) 2016 released beMicro.  All rights reserved.
-beMicro autoriza el uso, modificacion,copia y distribucion de este software.
+Derechos de Autor PCZ pablinza@me.com.
+Se autoriza el uso, copia y distribucion de este software con fines educativos
 
-SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
-EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF
-ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY 
-INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS
-OR LOST DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS.
+Favor tomar en cuenta lo siguiente:
+El software y documentacion provisto no implica garantia alguna en cuanto al uso 
+y sus posibles resultados directos o indirectos, incluyendo posibles incidentes, 
+daños personales, daños materiales, perdida de informacion, etc.
 *******************************************************************************/
-void LCDWriteData(char data)
+void LCDWritechar(char data)
 {
     DelayLCD();
     LCD_RS = 1;
@@ -37,7 +36,7 @@ void LCDWriteData(char data)
     LCD_EN = 0;
     LCD_TRIS |= 0x0f;
 }
-void LCDWriteCmd(char cmd)
+void LCDSet(char cmd)
 {
     DelayLCD();
     LCD_RS = 0;                     // Set control bits
@@ -101,20 +100,29 @@ void LCDSetup(char mode)
     DelayForTCY();
     LCD_EN = 0;
     DelayForTCY10();
-    LCDWriteCmd(mode);		// Function set 2l 5x7
-    //LCDWriteCmd(0b00100000);	// Function set 1l 5x7
-    LCDWriteCmd(DOFF);		// Clear display
-    LCDWriteCmd(CLEAR);		// Turn the display on then off
-    LCDWriteCmd(DON & CURSOR_OFF & BLINK_OFF);// Display ON/Blink ON
-    LCDWriteCmd(0b00000100);//Cursor Shift
-    LCDWriteCmd(0b00000110);//Cursor Inc
-    LCDWriteCmd(HOME);
+    LCDSet(mode);		// Function set 2l 5x7
+    //LCDSet(0b00100000);	// Function set 1l 5x7
+    LCDSet(DOFF);		// Clear display
+    LCDSet(CLEAR);		// Turn the display on then off
+    LCDSet(DON & CURSOR_OFF & BLINK_OFF);// Display ON/Blink ON
+    LCDSet(0b00000100);//Cursor Shift
+    LCDSet(0b00000110);//Cursor Inc
+    LCDSet(HOME);
 }
-void LCDPuts(char *str)
+void LCDWrite(char *str)
 {
     while(*str)         	// Write data to LCD up to null
     {
-    	LCDWriteData(*str); // Write character to LCD
+    	LCDWritechar(*str); // Write character to LCD
+        str++;              // Increment buffer
+    }
+}
+
+void LCDPuts(const char *str)
+{
+    while(*str)         	// Write data to LCD up to null
+    {
+    	LCDWritechar(*str); // Write character to LCD
         str++;              // Increment buffer
     }
 }
