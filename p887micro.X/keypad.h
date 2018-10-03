@@ -9,17 +9,17 @@
 *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (c) 2016 released beMicro.  All rights reserved.
-beMicro autoriza el uso, modificacion,copia y distribucion de este software.
+Derechos de Autor PCZ pablinza@me.com.
+Se autoriza el uso, copia y distribucion de este software con fines educativos
 
-SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
-EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF
-ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY 
-INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS
-OR LOST DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS.
+Favor tomar en cuenta lo siguiente:
+El software y documentacion provisto no implica garantia alguna en cuanto al uso 
+y sus posibles resultados directos o indirectos, incluyendo posibles incidentes, 
+daños personales, daños materiales, perdida de informacion, etc.
 *******************************************************************************/
 void KBSetup();
 char KBScan(); //Retorna 1 si existe dato 
+char KBGetval(char n); //Recupera valor Decimal
 char KBGetchar(char n); //Recupera valor ASCII
 void KBGetstring(char *msg, char len); //Recupera un string
 #include "keypad.c"

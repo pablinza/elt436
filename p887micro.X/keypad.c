@@ -4,19 +4,18 @@
  *  Material de uso para aprendizaje en ELT436 U.E.B.
  *  (nota) Las filas B7-B4 deben ser entradas pullups
  *  Se debe definir los siguientes literales
- *  #define KB_PORT Port de salida
- *	#define KB_TRIS Tris de Port
+ *  #define KBPORT Port de salida
+ *	#define KBTRIS Tris de Port
 *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (c) 2016 released beMicro.  All rights reserved.
-beMicro autoriza el uso, modificacion,copia y distribucion de este software.
+Derechos de Autor PCZ pablinza@me.com.
+Se autoriza el uso, copia y distribucion de este software con fines educativos
 
-SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
-EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF
-ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY 
-INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS
-OR LOST DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS.
+Favor tomar en cuenta lo siguiente:
+El software y documentacion provisto no implica garantia alguna en cuanto al uso 
+y sus posibles resultados directos o indirectos, incluyendo posibles incidentes, 
+daños personales, daños materiales, perdida de informacion, etc.
 *******************************************************************************/
 void KBSetup()
 {
@@ -68,6 +67,29 @@ char KBGetchar(char n)
 	}
 }
 
+char KBGetval(char n)
+{
+	switch(n)
+	{
+		case 0b11101110: return 13; //Return
+		case 0b11101101: return 15;
+		case 0b11101011: return 0;
+		case 0b11100111: return 14;
+		case 0b11011110: return 12;
+		case 0b11011101: return 9;
+		case 0b11011011: return 8;
+		case 0b11010111: return 7;
+		case 0b10111110: return 11;
+		case 0b10111101: return 6;
+		case 0b10111011: return 5;
+		case 0b10110111: return 4;
+		case 0b01111110: return 10; //Line Feed
+		case 0b01111101: return 3;
+		case 0b01111011: return 2;
+		case 0b01110111: return 1;
+		default: return '?';
+	}
+}
 void KBGetstring(char *msg, char len)
 {
 	char key;
@@ -79,7 +101,7 @@ void KBGetstring(char *msg, char len)
 		} while(key == 0);
 		*msg = KBGetchar(key);
 		msg ++;
-        __delay_ms(100);
+        delayms(100);
 	} 
 	*msg = 0;
 }
