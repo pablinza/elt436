@@ -7,13 +7,13 @@
  *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Derechos de Autor PCZ.  Todos los derechos reservados.
+Derechos de Autor PCZ pablinza@me.com.
 Se autoriza el uso, copia y distribucion de este software con fines educativos
 
-Favor tomar en cuenta los siguiente:
+Favor tomar en cuenta lo siguiente:
 El software y documentacion provisto no implica garantia alguna en cuanto al uso 
 y sus posibles resultados directos o indirectos, incluyendo posibles incidentes, 
-daños personales, daños materiales, perdidad de informacion, etc.
+daños personales, daños materiales, perdida de informacion, etc.
 *******************************************************************************/
 #ifndef _XTAL_FREQ
     #error "Debe Definir la Frecuencia de Operacion"
