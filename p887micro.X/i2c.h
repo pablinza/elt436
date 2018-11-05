@@ -3,7 +3,7 @@
  *  Autor: Pablo Zarate email:pablo@digital-bo.com
  *  facebook group: ELECTRONICA MCU 
  *  Material de uso para aprendizaje en ELT436 U.E.B.
- * 
+ *  V18.1105
  *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************

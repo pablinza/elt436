@@ -3,7 +3,7 @@
  *  Autor: Pablo Zarate email:pablo@digital-bo.com
  *  facebook group: ELECTRONICA MCU 
  *  Material de uso para aprendizaje en ELT436 U.E.B.
- * 
+ *  V18.1105
  *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
@@ -19,18 +19,19 @@ void I2CSetup(unsigned int rate)
 {
   SSPCON = 0; //Reset Values
   SSPCON2 = 0; //Reset Values
-  TRISCbits.TRISC3 = 1; //SCL Input Open Drain Slave Mode
-  TRISCbits.TRISC4 = 1; //SDA Input Open Drain Slave Mode
   SSPCONbits.SSPM = 0b1000; //Master Mode Fosc/(4*(SPADD+1))
-  SSPSTATbits.SMP = 1; //Slew rate disable  for 100KHz - 1MHz
+  SSPSTATbits.SMP = 1; //Slew rate 1=off(100KHz/1MHz) 0=On(400KHz)
   if(rate == I2CFAST) SSPSTATbits.SMP = 0; //Slew rate enabled 400KHz
   SSPADD = (_XTAL_FREQ / (4000L * rate))-1; //Setting Clock Speed
-  SSPSTATbits.CKE = 0; //some models(CKE = 1 for SMBUS)
+  SSPSTATbits.CKE = 0; //some models(CKE = 1 for SMBUS PIC16F87x)
   SSPCONbits.SSPEN = 1;
+  TRISCbits.TRISC3 = 1; //SCL Input Open Drain Slave Mode
+  TRISCbits.TRISC4 = 1; //SDA Input Open Drain Slave Mode
+    
 }
 void I2CIdle()  //Wait for idle
 {
-    while((SSPCON2 & 0x1F)|(SSPSTATbits.R_nW)); 
+    while((SSPCON2 & 0x1F)||(SSPSTAT & 0x04)); 
 }
 void I2CAck()   //Send ACK
 {
@@ -46,11 +47,13 @@ void I2CNotAck()//Send NACK
 }
 void I2CStop()  //Send STOP
 {
+    I2CIdle();
     SSPCON2bits.PEN = 1;
     while(SSPCON2bits.PEN);
 }
 void I2CStart() //Send START
 {
+    I2CIdle();
     SSPCON2bits.SEN = 1;
     while(SSPCON2bits.SEN); //Wait to Start is sended
 }
@@ -61,14 +64,14 @@ void I2CRestart()//Send RESTART
 }
 char I2CRead()
 {	
-    while((SSPCON2 & 0x1F)|(SSPSTATbits.R_nW));
+    I2CIdle();
     SSPCON2bits.RCEN = 1;   // enable master for 1 byte reception
 	while(!SSPSTATbits.BF); // wait until byte received
 	return(SSPBUF);         // return with read byte 
 }
 char I2CWrite(char data)
 {	
-    while((SSPCON2 & 0x1F)|(SSPSTATbits.R_nW)); //Idle Test
+    I2CIdle();
     SSPBUF = data;                  // write single byte to SSPBUF
   	if(SSPCONbits.WCOL) return (0); //if WCOL Collision
 	while(SSPSTATbits.BF);          //wait until write cycle is complete
