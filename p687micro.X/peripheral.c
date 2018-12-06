@@ -3,7 +3,7 @@
 * 				PIC16F687/F689/F690 			   				* 
 *    Company: Universidad Evangelica Boliviana 							*
 *     Author: Pablo Zarate A. pablinza@me.com							*
-*    Version: Julio 2018 V18.7  										*
+*    Version: Dec 2018 V18.12  										*
 *    Summary: Es una libreria de funciones y procedimientos de uso base *
 *			  para los PIC serie 16F68x empleados en la materia ELT-436.*
 ************************************************************************/
@@ -36,7 +36,7 @@ void OSCSetup()
 }
 
 #ifndef USART_LIB
-void UARTSetup(unsigned int baud)
+void USARTSetup(unsigned int baud)
 {
     unsigned int brg;
     TXSTAbits.BRGH = 1;
@@ -48,7 +48,7 @@ void UARTSetup(unsigned int baud)
     RCSTAbits.CREN = 1;
     RCSTAbits.SPEN = 1;
 }
-void UARTCheck()
+void USARTCheck()
 {
     if(RCSTAbits.OERR)
     {
@@ -57,6 +57,7 @@ void UARTCheck()
         RCSTAbits.CREN = 1;
     }	
 }
+#endif
 void putch(char byte)
 {
 	while(PIR1bits.TXIF == 0);
@@ -67,7 +68,6 @@ char getch()
 	while(PIR1bits.RCIF == 0);
 	return RCREG;
 }
-#endif
 void EEWrite(char addr, char data)
 {
     char GIEbit;
@@ -95,12 +95,15 @@ void ADCSetup()
     ADCON0bits.VCFG = 0; //0=VDD    1=RA1/Vref
     ADCON0bits.ADON = 1;
 }
-unsigned int ADCRead(char ch)
+void ADCStart(char ch)
+{
+    ADCON0bits.CHS = ch;
+    __delay_us(20); //2TAD + TACQ
+    ADCON0bits.GO = 1;
+}
+unsigned int ADCRead()
 {
     unsigned int value;
-    ADCON0bits.CHS = ch;
-    _delay(20); //2TAD
-    ADCON0bits.GO = 1;
     while(ADCON0bits.GO);
     value = ADRESH;
     value = (value << 8) & 0xFF00;
@@ -131,11 +134,6 @@ void TMR1Setup(char cs, char pre)
     TMR1H = 0;
     TMR1L = 0;
     PIR1bits.TMR1IF = 0;
-}
-void TMR1Setval(unsigned int value)
-{
-    TMR1L = value;
-    TMR1H = (char) value >> 8;
 }
 unsigned int TMR1Getval()
 {

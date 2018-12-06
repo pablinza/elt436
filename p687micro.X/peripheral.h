@@ -1,160 +1,105 @@
 /************************************************************************
 * Libreria de rutinas basicas para los Recursos/Perifericos de los MCU	*
-* 				PIC16F687/F689/F690 			   				* 
+* 				PIC16F687/F689/F690			   				* 
 *    Company: Universidad Evangelica Boliviana 							*
 *     Author: Pablo Zarate A. pablinza@me.com							*
-*    Version: Julio 2018 V18.7  										*
+*    Version: Dec 2018 V18.12  										*
 *    Summary: Es una libreria de funciones y procedimientos de uso base *
-*			  para los PIC serie 16F68x empleados en la materia ELT-436.*
+*			  para los PIC serie 16F88x empleados en la materia ELT-436.*
 ************************************************************************/
-void OSCSetup()
-{
-#if _XTAL_FREQ == 8000000
-    OSCCONbits.IRCF = 7;
-#elif _XTAL_FREQ == 4000000
-    OSCCONbits.IRCF = 6;
-#elif _XTAL_FREQ == 2000000
-    OSCCONbits.IRCF = 5;
-#elif _XTAL_FREQ == 1000000
-    OSCCONbits.IRCF = 4;
-#elif _XTAL_FREQ == 500000
-    OSCCONbits.IRCF = 3;
-#elif _XTAL_FREQ == 250000
-    OSCCONbits.IRCF = 2;
-#elif _XTAL_FREQ == 125000
-    OSCCONbits.IRCF = 1;
-#elif _XTAL_FREQ == 31000
-    OSCCONbits.IRCF = 0;
-#else 
-    #warning "Oscilador Interno no ajustado a Frecuencia"
+#if !defined(_16F687) && !defined(_16F689) && !defined(_16F690)
+	#error "Libreria rutinas.c no corresponde al PIC seleccionado"
 #endif
-#if _XTAL_FREQ < 125000
-    while(!OSCCONbits.LTS);
-#else
-    while(!OSCCONbits.HTS);   
+#ifndef _XTAL_FREQ
+	#error "Debe definir la frecuencia de operacion _XTAL_FREQ"
 #endif
-}
+#define true 1
+#define false 0
+#define EnablePU() OPTION_REGbits.nRABPU = 0 //Activa las pullups del PORTB
+/************************************************
+ * 				Modulo OSCILADOR				*
+ ************************************************/
+void OSCSetup();					//Ajusta el oscilador interno a _XTAL_FREQ
 
+/************************************************
+ * 				Modulo USART					*
+ ************************************************/
 #ifndef USART_LIB
-void UARTSetup(unsigned int baud)
-{
-    unsigned int brg;
-    TXSTAbits.BRGH = 1;
-    BAUDCTLbits.BRG16 = 1;
-    brg = _XTAL_FREQ/(4*(baud + 1));
-    SPBRG = brg;
-    SPBRGH = brg >> 8;
-    TXSTAbits.TXEN = 1;
-    RCSTAbits.CREN = 1;
-    RCSTAbits.SPEN = 1;
-}
-void UARTCheck()
-{
-    if(RCSTAbits.OERR)
-    {
-        RCSTAbits.CREN = 0;
-        NOP();
-        RCSTAbits.CREN = 1;
-    }	
-}
-void putch(char byte)
-{
-	while(PIR1bits.TXIF == 0);
-	TXREG = byte;
-}
-char getch()
-{
-	while(PIR1bits.RCIF == 0);
-	return RCREG;
-}
+void USARTSetup(unsigned int baud);	//Inicia y configura la velocidad
+void USARTCheck();					//Verifica si hay errores y reinicia el receptor
 #endif
-void EEWrite(char addr, char data)
-{
-    char GIEbit;
-    EEADR = addr;
-    EEDAT = data;
-    EECON1bits.WREN = 1;
-    GIEbit = INTCONbits.GIE;
-    INTCONbits.GIE = 0;
-    EECON2 = 0x55;
-    EECON2 = 0xAA;
-    EECON1bits.WR = 1;
-    while(EECON1bits.WR);
-    INTCONbits.GIE = GIEbit;
-    EECON1bits.WREN = 0;
-}
-char EERead(char addr)
-{
-    EEADR = addr;
-    EECON1bits.RD = 1;
-    return EEDAT;
-}
-void ADCSetup()
-{
-    ADCON1bits.ADCS = 0b11; //Ajusta el TAD a FRC
-    ADCON0bits.VCFG = 0; //0=VDD    1=RA1/Vref
-    ADCON0bits.ADON = 1;
-}
-unsigned int ADCRead(char ch)
-{
-    unsigned int value;
-    ADCON0bits.CHS = ch;
-    _delay(20); //2TAD
-    ADCON0bits.GO = 1;
-    while(ADCON0bits.GO);
-    value = ADRESH;
-    value = (value << 8) & 0xFF00;
-    value = value | ADRESL;
-    value = value >> 6;
-    return value;
-}
-void TMR0Setup(char cs, char pre)
-{
-    OPTION_REGbits.T0CS = cs;
-    OPTION_REGbits.T0SE = 0; //Counter 0=rising 1=falling
-    if(pre < 8)
-    {    
-        OPTION_REGbits.PSA = 0;
-        OPTION_REGbits.PS = pre;
-    }
-    TMR0 = 0;
-    INTCONbits.T0IF = 0;
-}
-char TMR0Getval()
-{
-    return TMR0;
-}
-void TMR1Setup(char cs, char pre)
-{
-    T1CONbits.TMR1CS = cs;
-    T1CONbits.T1CKPS = pre;
-    TMR1H = 0;
-    TMR1L = 0;
-    PIR1bits.TMR1IF = 0;
-}
-void TMR1Setval(unsigned int value)
-{
-    TMR1L = value;
-    TMR1H = (char) value >> 8;
-}
-unsigned int TMR1Getval()
-{
-    unsigned int value;
-    value = TMR1H;
-    value = value << 8;
-    value |= TMR1L; 
-    return value;
-}
-#ifdef _P16F690
-void TMR2Setup(char pre, char post)
-{
-    T2CONbits.T2CKPS = pre;
-    T2CONbits.TOUTPS = post;
-    PIR1bits.TMR2IF = 0;
-}
-char TMR2Getval()
-{
-    return(TMR2);
-}
-#endif
+#define getche getch
+void putch(char byte);				//Envia un byte por el modulo USART
+char getch();						//Recibe un byte del modulo USART
+/************************************************
+ * 				Modulo EEPROM					*
+ ************************************************/
+void EEWrite(char addr, char data); //Escribe una byte en memoria EEPROM
+char EERead(char addr);				//Lee un byte de la memoria EEPROM
 
+/************************************************
+ * 			Modulo Conversor ADC				*
+ ************************************************/
+void ADCSetup(); 
+void ADCStart(char ch);
+unsigned int ADCRead();
+/************************************************
+ * 			Modulo TIMER0           			*
+ ************************************************/
+#define COUNTER 1
+#define TIMER 0
+#define T0PRE256 7
+#define T0PRE128 6
+#define T0PRE64 5
+#define T0PRE32 4
+#define T0PRE16 3
+#define T0PRE8 2
+#define T0PRE4 1
+#define T0PRE2 0
+#define T0PRE1 8
+void TMR0Setup(char cs, char pre);
+#define TMR0Setval(x) TMR0 = x
+char TMR0Getval();
+/********************************************
+ * 			Modulo TIMER1					*
+ ********************************************/
+#define T1PRE8 3
+#define T1PRE4 2
+#define T1PRE2 1
+#define T1PRE1 0
+void TMR1Setup(char cs, char pre);
+#define TMR1Start() T1CONbits.TMR1ON = 1
+#define TMR1Stop() T1CONbits.TMR1ON = 0
+#define TMR1Setval(x) {TMR1L = x; TMR1H = x >> 8;}
+unsigned int TMR1Getval();
+#ifdef _16F690
+/********************************************
+ * 			Modulo TIMER2					*
+ ********************************************/
+#define T2PRE1 0
+#define T2PRE4 1
+#define T2PRE16 2
+#define T2POS1 0
+#define T2POS2 1
+#define T2POS3 2
+#define T2POS4 3
+#define T2POS5 4
+#define T2POS6 5
+#define T2POS7 6
+#define T2POS8 7
+#define T2POS9 8
+#define T2POS10 9
+#define T2POS11 10
+#define T2POS12 11
+#define T2POS13 12
+#define T2POS14 13
+#define T2POS15 14
+#define T2POS16 15
+void TMR2Setup(char pre, char post);
+#define TMR2Start() T2CONbits.TMR2ON = 1
+#define TMR2Stop() T2CONbits.TMR2ON = 0
+#define TMR2Setperiod(x) PR2 = x
+#define TMR2Setval(x) TMR2 = x
+char TMR2Getval();
+#endif
+#include "peripheral.c"
