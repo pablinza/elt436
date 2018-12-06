@@ -1,6 +1,6 @@
 /************************************************************************
 * Libreria de rutinas basicas para los Recursos/Perifericos de los MCU	*
-* 				PIC16F687/F689/F690 			   				* 
+* 				PIC12F 			   										* 
 *    Company: Universidad Evangelica Boliviana 							*
 *     Author: Pablo Zarate A. pablinza@me.com							*
 *    Version: Julio 2018 V18.7  										*
@@ -72,11 +72,6 @@ void TMR1Setup(char cs, char pre)
     TMR1H = 0;
     TMR1L = 0;
     PIR1bits.TMR1IF = 0;
-}
-void TMR1Setval(unsigned int value)
-{
-    TMR1L = value;
-    TMR1H = (char) value >> 8;
 }
 unsigned int TMR1Getval()
 {
