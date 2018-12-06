@@ -3,7 +3,7 @@
 * 				PIC16F882/F883/F884/F886/F887 			   				* 
 *    Company: Universidad Evangelica Boliviana 							*
 *     Author: Pablo Zarate A. pablinza@me.com							*
-*    Version: Julio 2018 V18.7  										*
+*    Version: Dec 2018 V18.12  										*
 *    Summary: Es una libreria de funciones y procedimientos de uso base *
 *			  para los PIC serie 16F88x empleados en la materia ELT-436.*
 ************************************************************************/
@@ -70,7 +70,7 @@ char TMR0Getval();
 void TMR1Setup(char cs, char pre);
 #define TMR1Start() T1CONbits.TMR1ON = 1
 #define TMR1Stop() T1CONbits.TMR1ON = 0
-void TMR1Setval(unsigned int value);
+#define TMR1Setval(x) {TMR1L = x; TMR1H = x >> 8;}
 unsigned int TMR1Getval();
 /********************************************
  * 			Modulo TIMER2					*

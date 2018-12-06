@@ -2,7 +2,7 @@
 * Libreria de rutinas basicas para los PIC16F882/F883/F884/F886/F887    * 
 *    Company: Universidad Evangelica Boliviana 							*
 *     Author: Pablo Zarate A. pablinza@me.com							*
-*    Version: Julio 2018 V18.7  										*
+*    Version: DEC 2018 V18.12  	     									*
 *    Summary: Es una libreria de funciones y procedimientos de uso base *
 *			  para los PIC serie 16F88x empleados en la materia ELT-436.*
 ************************************************************************/
@@ -136,11 +136,6 @@ void TMR1Setup(char cs, char pre)
     TMR1H = 0;
     TMR1L = 0;
     PIR1bits.TMR1IF = 0;
-}
-void TMR1Setval(unsigned int value)
-{
-    TMR1L = value;
-    TMR1H = (char) value >> 8;
 }
 unsigned int TMR1Getval()
 {
