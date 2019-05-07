@@ -14,3 +14,7 @@ Las practicas estan ordenadas de acuerdo a su nombre de archivo y solo se requir
 cambiar el programa principal .c en el proyecto para la compilacion.
 
 Deben contar con el IDE MPLABX y su compilador XC8 instalados en el ordenador.
+
+Pablo Zarate Arancibia
+Ingeniero Electronico
+pablinzte@gmail.com
