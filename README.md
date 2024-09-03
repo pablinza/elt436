@@ -17,23 +17,24 @@ Los proyectos se crearon con la version MPLABX 6.25 y el compilador XC8 2.50 ver
 Practicas de Programacion para Microcontroladores PIC16F.
 
 ## Lista de practicas desarrolladas en la Materia
-- P01 - Destello de Luz Seciencial   [APPBASE]
+## - P01 - Destello de Luz Seciencial   [APPBASE]
   <p align="center">
   <img src="apbase_bb.png"></img>
 </p>
-- P02 - Control de Trafico Vehicular [APTRAFFIC]
+El cricuito que destella un led con tarea concurrente utilizando un temporizador, este codigo representa el programa base para los siguientes ejemplos.
+## - P02 - Control de Trafico Vehicular [APTRAFFIC]
 <p align="center">
   <img src="aptraffic_bb.png"></img>
 </p>
-- P03 - Monitor de Datos Serial ADC  [APMONITOR]
+## - P03 - Monitor de Datos Serial ADC  [APMONITOR]
 <p align="center">
   <img src="apmonitor_bb.png"></img>
 </p>
-- P04 - Controlador para Servomotor  [APSERVO]
+## - P04 - Controlador para Servomotor  [APSERVO]
 <p align="center">
   <img src="apservo_bb.png"></img>
 </p>
-- P05 - Control de Acceso Autorizado [APKEYPAS]
+## - P05 - Control de Acceso Autorizado [APKEYPAS]
 <p align="center">
   <img src="apkeypas_bb.png"></img>
 </p>
