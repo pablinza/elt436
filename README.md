@@ -53,9 +53,11 @@ Adjunto el siguiente link que muestra como compilar estos ejemplos en MPLABX
 
 
 <img src="pablo_ueb.png" align="left" width="200px"/>
-Elaborado por Pablo Zarate Arancibia pablinza@me.com / pablinzte@gmail.com.  <br />
+Autor: Pablo Zarate, puedes contactarme a pablinza@me.com / pablinzte@gmail.com.  <br />
 Visita mi Blog  [Blog de Contenidos](https://pablinza.blogspot.com/). <br />
 Visita mi Canal [Blog de Contenidos](http://www.youtube.com/@pablozarate7524)). <br />
+Facultad de Ciencias y Tecnologia UEB - Ingenieria Electronica. <br />
+Santa Cruz - Bolivia 
 <br clear="left"/>
-Facultad de Ciencias y Tecnologia, Santa Cruz - Bolivia
+******************
 
