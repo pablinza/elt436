@@ -18,6 +18,9 @@ Practicas de Programacion para Microcontroladores PIC16F.
 
 ## Lista de practicas desarrolladas en la Materia
 - P01 - Destello de Luz Seciencial   [APPBASE]
+  <p align="center">
+  <img src="apbase_bb.png"></img>
+</p>
 - P02 - Control de Trafico Vehicular [APTRAFFIC]
 - P03 - Monitor de Datos Serial ADC  [APMONITOR]
 - P04 - Controlador para Servomotor  [APSERVO]
