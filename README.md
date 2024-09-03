@@ -59,5 +59,5 @@ Visita mi Canal [Blog de Contenidos](http://www.youtube.com/@pablozarate7524)). 
 Facultad de Ciencias y Tecnologia UEB - Ingenieria Electronica. <br />
 Santa Cruz - Bolivia 
 <br clear="left"/>
-******************
+***********************
 
