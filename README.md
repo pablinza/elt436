@@ -51,18 +51,12 @@ Adjunto el siguiente link que muestra como compilar estos ejemplos en MPLABX
 [![](http://img.youtube.com/vi/w-GRu89glrg/0.jpg)](http://www.youtube.com/watch?v=w-GRu89glrg "Compilar en MPLABX")
 
 
-<p align="center">
-  <img src="pablo_ueb.png"></img>
-</p>
+
+<img src="pablo_ueb.png" align="left" width="200px"/>
 Elaborado por Pablo Zarate Arancibia 
 pablinza@me.com / pablinzte@gmail.com
 Blog de contenido https://pablinza.blogspot.com
 Canal Youtube http://www.youtube.com/@pablozarate7524
-
-<img src="pablo_ueb.png" align="left" width="200px"/>
-some text floating around the image
-
 <br clear="left"/>
-
-A "newline". This text doesn't float anymore, is left-aligned
+Facultad de Ciencias y Tecnologia, Santa Cruz - Bolivia
 
