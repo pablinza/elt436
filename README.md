@@ -17,28 +17,36 @@ Los proyectos se crearon con la version MPLABX 6.25 y el compilador XC8 2.50 ver
 Practicas de Programacion para Microcontroladores PIC16F.
 
 ## Lista de practicas desarrolladas en la Materia
-## - P01 - Destello de Luz Seciencial   [APPBASE]
+### - P01 - Destello de Luz Seciencial   [APPBASE]
   <p align="center">
   <img src="apbase_bb.png"></img>
 </p>
 El cricuito que destella un led con tarea concurrente utilizando un temporizador, este codigo representa el programa base para los siguientes ejemplos.
-## - P02 - Control de Trafico Vehicular [APTRAFFIC]
+
+### - P02 - Control de Trafico Vehicular [APTRAFFIC]
 <p align="center">
   <img src="aptraffic_bb.png"></img>
 </p>
-## - P03 - Monitor de Datos Serial ADC  [APMONITOR]
+Este circuito muestra como implementar un contrlador de trafico para dos fases, el cual incluye una entrada de mantenimiento. Los tiempos son programables
+
+### - P03 - Monitor de Datos Serial ADC  [APMONITOR]
 <p align="center">
   <img src="apmonitor_bb.png"></img>
 </p>
-## - P04 - Controlador para Servomotor  [APSERVO]
+Circuito que hace lectura de dos canales analogicos y uno digital del joystick, y cuyos valores se transmiten a un ordenador a travez del puerto serial.
+
+### - P04 - Controlador para Servomotor  [APSERVO]
 <p align="center">
   <img src="apservo_bb.png"></img>
 </p>
-## - P05 - Control de Acceso Autorizado [APKEYPAS]
+Este circuito permite el control de un servomotor para la apertura de barra utilizando un detector de objetos por ultrasonido
+
+### - P05 - Control de Acceso Autorizado [APKEYPAS]
 <p align="center">
   <img src="apkeypas_bb.png"></img>
 </p>
-  
+Circuito para el control de acceso autorizado, utilizando un teclado para ingresar la clave y un display que muestra el estado.
+
 Adjunto el siguiente link que muestra como compilar estos ejemplos en MPLABX
 [![](http://img.youtube.com/vi/w-GRu89glrg/0.jpg)](http://www.youtube.com/watch?v=w-GRu89glrg "Compilar en MPLABX")
 
