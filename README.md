@@ -50,6 +50,8 @@ Circuito para el control de acceso autorizado, utilizando un teclado para ingres
 Adjunto el siguiente link que muestra como compilar estos ejemplos en MPLABX
 [![](http://img.youtube.com/vi/w-GRu89glrg/0.jpg)](http://www.youtube.com/watch?v=w-GRu89glrg "Compilar en MPLABX")
 
+
 Elaborado por Pablo Zarate Arancibia 
 pablinza@me.com / pablinzte@gmail.com
-Blog de contenido https://pablinza.blogspot.com/
+Blog de contenido https://pablinza.blogspot.com
+Canal Youtube http://www.youtube.com/@pablozarate7524
