@@ -22,9 +22,21 @@ Practicas de Programacion para Microcontroladores PIC16F.
   <img src="apbase_bb.png"></img>
 </p>
 - P02 - Control de Trafico Vehicular [APTRAFFIC]
+<p align="center">
+  <img src="aptraffic_bb.png"></img>
+</p>
 - P03 - Monitor de Datos Serial ADC  [APMONITOR]
+<p align="center">
+  <img src="apmonitor_bb.png"></img>
+</p>
 - P04 - Controlador para Servomotor  [APSERVO]
+<p align="center">
+  <img src="apservo_bb.png"></img>
+</p>
 - P05 - Control de Acceso Autorizado [APKEYPAS]
+<p align="center">
+  <img src="apkeypas_bb.png"></img>
+</p>
   
 Adjunto el siguiente link que muestra como compilar estos ejemplos en MPLABX
 [![](http://img.youtube.com/vi/w-GRu89glrg/0.jpg)](http://www.youtube.com/watch?v=w-GRu89glrg "Compilar en MPLABX")
