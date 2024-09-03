@@ -1,20 +1,31 @@
-# elt436
-     Proyecto de Practicas para la Materia de Microcontroladores U.E.B
-Carpeta de la materia Microcontroladores U.E.B con los ejercicios practicos en Laboratorio. 
-Proyecto creado en MPLABX utilizando el compilador XC8 y el PIC16F887 14kb/368b/256EP 
-Ejemplos practivos para los PIC16F687/PIC16F886/PIC12F675
-*******************************************************************************************
+# MCU20 pablinza@me.com
+Programacion de Microcontroladores PIC16F
+
+<p align="center">
+  <img src="pic1.png"></img>
+</p>
+
+Carpeta con los proyectos generados por MPLABX utilizando el compilador XC8 para los modelos:
+- PIC16F887 con oscilador interno 8MHz 
+- PIC16F687 con oscilador interno 8MHz  
 Los archivos con extension .c corresponden al codigo fuente de un programa o practica
-
-Los archivos con extension .h y .c con mismo nombre, son parte de una libreria
-
+Los archivos con extension .h y .c con mismo nombre, son procedimientos y funciones basicas
+Los archivos con extension .hex representan el codigo de maquina generado para el PIC
 Los archivos con extension .png corresponden a una imagen de esquema de circuito
 
-Las practicas estan ordenadas de acuerdo a su nombre de archivo y solo se require 
-cambiar el programa principal .c en el proyecto para la compilacion.
+Los proyectos se crearon con la version MPLABX 6.25 y el compilador XC8 2.50 version FREE
+Practicas de Programacion para Microcontroladores PIC16F.
 
-Deben contar con el IDE MPLABX y su compilador XC8 instalados en el ordenador.
+## Lista de practicas desarrolladas en la Materia
+- P01 - Destello de Luz Seciencial   [APPBASE]
+- P02 - Control de Trafico Vehicular [APTRAFFIC]
+- P03 - Monitor de Datos Serial ADC  [APMONITOR]
+- P04 - Controlador para Servomotor  [APSERVO]
+- P05 - Control de Acceso Autorizado [APKEYPAS]
+  
+Adjunto el siguiente link que muestra como compilar estos ejemplos en MPLABX
+[![](http://img.youtube.com/vi/w-GRu89glrg/0.jpg)](http://www.youtube.com/watch?v=w-GRu89glrg "Compilar en MPLABX")
 
-Pablo Zarate Arancibia
-Ingeniero Electronico
-pablinzte@gmail.com
+Elaborado por Pablo Zarate Arancibia 
+pablinza@me.com / pablinzte@gmail.com
+Blog de contenido https://pablinza.blogspot.com/
