@@ -19,31 +19,31 @@ Practicas de Programacion para Microcontroladores PIC16F.
 ## Lista de practicas desarrolladas en la Materia
 ### - P01 - Destello de Luz Seciencial   [APPBASE]
   <p align="center">
-  <img src="apbase_bb.png"></img>
+  <img src="ap1base.png"></img>
 </p>
 El cricuito que destella un led con tarea concurrente utilizando un temporizador, este codigo representa el programa base para los siguientes ejemplos.
 
 ### - P02 - Control de Trafico Vehicular [APTRAFFIC]
 <p align="center">
-  <img src="aptraffic_bb.png"></img>
+  <img src="ap2traffic.png"></img>
 </p>
 Este circuito muestra como implementar un contrlador de trafico para dos fases, el cual incluye una entrada de mantenimiento. Los tiempos son programables
 
 ### - P03 - Monitor de Datos Serial ADC  [APMONITOR]
 <p align="center">
-  <img src="apmonitor_bb.png"></img>
+  <img src="ap3monitor.png"></img>
 </p>
 Circuito que hace lectura de dos canales analogicos y uno digital del joystick, y cuyos valores se transmiten a un ordenador a travez del puerto serial.
 
 ### - P04 - Controlador para Servomotor  [APSERVO]
 <p align="center">
-  <img src="apservo_bb.png"></img>
+  <img src="ap4servo.png"></img>
 </p>
 Este circuito permite el control de un servomotor para la apertura de barra utilizando un detector de objetos por ultrasonido
 
 ### - P05 - Control de Acceso Autorizado [APKEYPAS]
 <p align="center">
-  <img src="apkeypas_bb.png"></img>
+  <img src="ap5keypas.png"></img>
 </p>
 Circuito para el control de acceso autorizado, utilizando un teclado para ingresar la clave y un display que muestra el estado.
 
