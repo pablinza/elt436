@@ -21,6 +21,8 @@ El cricuito que destella un led con tarea concurrente utilizando un temporizador
 Circuito que hace lectura de dos canales analogicos y uno digital del joystick, y cuyos valores se transmiten a un ordenador a travez del puerto serial.
 
 ### - Programa Basico para Destellar el LED
+
+***c
 void
 a(void) {
     /* Avoid function calls when declaring variable */
@@ -33,6 +35,7 @@ a(void) {
     /* This is ok */
     uint8_t a = 3, b = 4;
 }
+***
 
 Adjunto el siguiente link que muestra como compilar estos ejemplos en MPLABX
 [![](http://img.youtube.com/vi/w-GRu89glrg/0.jpg)](http://www.youtube.com/watch?v=w-GRu89glrg "Compilar en MPLABX")
