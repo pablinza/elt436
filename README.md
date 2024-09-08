@@ -29,15 +29,14 @@ ent level
 #include <xc.h>
 #define LEDpin PORTEbits.RE2 //Led de la tarjeta
 volatile __bit tickms;
-void setupMCU(void);
-void taskLED(void);
-void __interrupt() isr(void)
+void setupMCU(void); //Configuracion del PIC
+void taskLED(void); //Tarea para destellar el LED
+void __interrupt() isr(void) //Rutina de servicio a la Interrupcion
 {
-    uint8_t res;
-    if(INTCONbits.T0IF)
+    if(INTCONbits.T0IF) //Evento del temporizador 0.001s
     {
         INTCONbits.T0IF = 0;
-        TMR0 += 131;
+        TMR0 += 131; //Recarga el contador
         tickms = 1;
     }
 }
