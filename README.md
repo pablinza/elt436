@@ -22,20 +22,73 @@ Circuito que hace lectura de dos canales analogicos y uno digital del joystick, 
 
 ### - Programa Basico para Destellar el LED
 
-***c
-void
-a(void) {
-    /* Avoid function calls when declaring variable */
-    int32_t a, b = sum(1, 2);
+## General rules
 
-    /* Use this */
-    int32_t a, b;
-    b = sum(1, 2);
+Here are listed most obvious and important general rules. Please check them carefully before you continue with other chapters.
 
-    /* This is ok */
-    uint8_t a = 3, b = 4;
+- `clang-format` SHOULD be used with formatting file attached to this repository (version `15.x` is a minimum)
+- Use `C11` standard
+- Do not use tabs, use spaces instead
+- Use `4` spaces per indent level
+- Use `1` space between keyword and opening bracket
+```c
+#pragma config FOSC=INTRC_NOCLKOUT, WDTE = OFF, BOREN = OFF, LVP = OFF
+#include <xc.h>
+#define LEDpin PORTEbits.RE2 //Led de la tarjeta
+volatile __bit tickms;
+void setupMCU(void);
+void taskLED(void);
+void __interrupt() isr(void)
+{
+    uint8_t res;
+    if(INTCONbits.T0IF)
+    {
+        INTCONbits.T0IF = 0;
+        TMR0 += 131;
+        tickms = 1;
+    }
 }
-***
+void main(void) 
+{
+    setupMCU();
+    while(1)
+    {
+        if(tickms)
+        {
+            tickms = 0;
+            taskLED(); //Destella LED
+        }
+    }
+}
+void setupMCU(void)
+{
+    OSCCONbits.IRCF = 0b111; //Oscilador Interno 8MHz
+    while(OSCCONbits.HTS == 0);
+    ANSEL = 0; //Desactiva pines ADC AN0 al AN7
+    ANSELH = 0;//Desactiva pines ADC AN8 al AN13
+    TRISEbits.TRISE2 = 0; //Salida LED
+    OPTION_REGbits.nRBPU = 0; //Activa las pull-ups PORTB
+    /* CONFIGURACION TIMER0 1MS a Fosc=8MHz*/
+    OPTION_REGbits.T0CS = 0;//Modo Termporizador
+    OPTION_REGbits.PSA = 0; //Con prescala
+    OPTION_REGbits.PS = 0b011; //Prescala 1:16
+    TMR0 = 131; //256-(time/((pre)*(4/Fosc))) time=0.001 seg
+    INTCONbits.T0IF = 0; //Limpia bandera
+    INTCONbits.T0IE = 1; //Activa interrupcion del TMR0
+    
+    INTCONbits.GIE = 1; //Habilitador global ISR
+}
+void taskLED(void) //Destello de LED1 1Hz al 20%
+{
+    static uint16_t cnt = 0;
+    if(cnt++ > 999) 
+    {
+        cnt = 0;
+        LEDpin = 1; //Activa LED
+    }
+    if(cnt == 200) LEDpin = 0; //Apaga LED
+}
+```
 
 Adjunto el siguiente link que muestra como compilar estos ejemplos en MPLABX
 [![](http://img.youtube.com/vi/w-GRu89glrg/0.jpg)](http://www.youtube.com/watch?v=w-GRu89glrg "Compilar en MPLABX")
