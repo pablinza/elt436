@@ -2,7 +2,7 @@
 Descripcion de la Placa B8P40 para programacion del PIC16F
 
 <p align="center">
-  <img src="pic1.png"></img>
+  <img src="/images/b8p40.png"></img>
 </p>
 
 Carpeta con los proyectos generados por MPLABX utilizando el compilador XC8 para los modelos:
