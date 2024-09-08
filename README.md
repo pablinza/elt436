@@ -12,16 +12,13 @@ Lista de Repositorio de practicas efectuadas en laboratorio <br />
   <p align="center">
   <img src="/images/b8p40_sch_p1.png"></img>
 </p>
-El cricuito que destella un led con tarea concurrente utilizando un temporizador, este codigo representa el programa base para los siguientes ejemplos.
 
 ### - BLoque 2 - Elementos Adicionales de la Tarjeta
 <p align="center">
   <img src="/images/b8p40_sch_p2.png"></img>
 </p>
-Circuito que hace lectura de dos canales analogicos y uno digital del joystick, y cuyos valores se transmiten a un ordenador a travez del puerto serial.
 
 ## Programa para destellar el LED 
-
 El siguiente codigo es un ejemplo basico creado en MPLABX el cual permite destellar el LED  DS1 conectado el pin RE2 del MCU, este codigo sera la base del resto de ejemplo que se veran en los laboratorios. En el codigo se considera que el PIC16F887 opera a una frecuencia de 8MHz utilizando el Oscilador Interno. En caso de utilizar tinybootloader, se debe reservar el uso de memoria en MPLABX.
 La carpeta `p0apptest.X` coeesponde al proyecto generado con `MPLABX` version 6.25 y utiliza el compilador `XC8` version 2.5 <br />
 La carpeta `P0apptestasm.X` contiene el proyecto generado con `MPLABX` version 6.25 utilizando el ensamblador `PIC-AS` <br />
