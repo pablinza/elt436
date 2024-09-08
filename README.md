@@ -1,5 +1,5 @@
-# MCU20 pablinza@me.com
-Programacion de Microcontroladores PIC16F
+# B8P40 Microcontrolador PIC1&F887 pablinza@me.com
+Descripcion de la Placa B8P40 para programacion del PIC16F
 
 <p align="center">
   <img src="pic1.png"></img>
@@ -23,29 +23,9 @@ Practicas de Programacion para Microcontroladores PIC16F.
 </p>
 El cricuito que destella un led con tarea concurrente utilizando un temporizador, este codigo representa el programa base para los siguientes ejemplos.
 
-### - P02 - Control de Trafico Vehicular [APTRAFFIC]
-<p align="center">
-  <img src="ap2traffic.png"></img>
-</p>
-Este circuito muestra como implementar un contrlador de trafico para dos fases, el cual incluye una entrada de mantenimiento. Los tiempos son programables
 
-### - P03 - Monitor de Datos Serial ADC  [APMONITOR]
-<p align="center">
-  <img src="ap3monitor.png"></img>
-</p>
 Circuito que hace lectura de dos canales analogicos y uno digital del joystick, y cuyos valores se transmiten a un ordenador a travez del puerto serial.
 
-### - P04 - Controlador para Servomotor  [APSERVO]
-<p align="center">
-  <img src="ap4servo.png"></img>
-</p>
-Este circuito permite el control de un servomotor para la apertura de barra utilizando un detector de objetos por ultrasonido
-
-### - P05 - Control de Acceso Autorizado [APKEYPAS]
-<p align="center">
-  <img src="ap5keypas.png"></img>
-</p>
-Circuito para el control de acceso autorizado, utilizando un teclado para ingresar la clave y un display que muestra el estado.
 
 Adjunto el siguiente link que muestra como compilar estos ejemplos en MPLABX
 [![](http://img.youtube.com/vi/w-GRu89glrg/0.jpg)](http://www.youtube.com/watch?v=w-GRu89glrg "Compilar en MPLABX")
