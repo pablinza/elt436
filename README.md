@@ -1,11 +1,11 @@
 # B8P40 Microcontrolador PIC16F887
-Descripcion de la Placa B8P40 utilizada para los ejercico de programacion en Laboratorio U.E.B
+Descripcion de la Placa B8P40 utilizada para los ejercico de programacion en Laboratorio U.E.B Asignatura ELT
 <p align="center">
   <img src="/images/b8p40.png"></img>
 </p>
-Lista de Repositorio de practicas efectuadas en laboratorio
-- https:/github.com/pablinza/piclab1.git 
-- https:/github.com/pablinza/piclab2.git (en desarrollo)
+Lista de Repositorio de practicas efectuadas en laboratorio <br />
+- https:/github.com/pablinza/piclab1.git <br />
+- https:/github.com/pablinza/piclab2.git (en desarrollo) <br />
 
 ## ESQUEMAS DEL CIRCUITO ELECTRONICO
 ### - BLoque 1 - Conexiones del Microcontrolador
