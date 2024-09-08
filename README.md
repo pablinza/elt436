@@ -1,31 +1,24 @@
-# B8P40 Microcontrolador PIC1&F887 pablinza@me.com
-Descripcion de la Placa B8P40 para programacion del PIC16F
-
+# B8P40 Microcontrolador PIC16F887 pablinza@me.com
+Descripcion de la Placa B8P40 utilizada para los ejercico de programacion en Laboratorio U.E.B
 <p align="center">
   <img src="/images/b8p40.png"></img>
 </p>
+Lista de Repositorio de practicas efectuadas en laboratorio
+- https:/github.com/pablinza/piclab1.git 
+- https:/github.com/pablinza/piclab2.git (en desarrollo)
 
-Carpeta con los proyectos generados por MPLABX utilizando el compilador XC8 para los modelos:
-- PIC16F887 con oscilador interno 8MHz 
-- PIC16F687 con oscilador interno 8MHz  
-Los archivos con extension .c corresponden al codigo fuente de un programa o practica
-Los archivos con extension .h y .c con mismo nombre, son procedimientos y funciones basicas
-Los archivos con extension .hex representan el codigo de maquina generado para el PIC
-Los archivos con extension .png corresponden a una imagen de esquema de circuito
-
-Los proyectos se crearon con la version MPLABX 6.25 y el compilador XC8 2.50 version FREE
-Practicas de Programacion para Microcontroladores PIC16F.
-
-## Lista de practicas desarrolladas en la Materia
-### - P01 - Destello de Luz Seciencial   [APPBASE]
+## ESQUEMAS DEL CIRCUITO ELECTRONICO
+### - BLoque 1 - Conexiones del Microcontrolador
   <p align="center">
-  <img src="ap1base.png"></img>
+  <img src="/images/b8p40_sch_p1.png"></img>
 </p>
 El cricuito que destella un led con tarea concurrente utilizando un temporizador, este codigo representa el programa base para los siguientes ejemplos.
 
+### - BLoque 2 - Elementos Adicionales de la Tarjeta
 
 Circuito que hace lectura de dos canales analogicos y uno digital del joystick, y cuyos valores se transmiten a un ordenador a travez del puerto serial.
 
+### - Programa Basico para Destellar el LED
 
 Adjunto el siguiente link que muestra como compilar estos ejemplos en MPLABX
 [![](http://img.youtube.com/vi/w-GRu89glrg/0.jpg)](http://www.youtube.com/watch?v=w-GRu89glrg "Compilar en MPLABX")
