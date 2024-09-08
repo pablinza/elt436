@@ -20,11 +20,9 @@ El cricuito que destella un led con tarea concurrente utilizando un temporizador
 </p>
 Circuito que hace lectura de dos canales analogicos y uno digital del joystick, y cuyos valores se transmiten a un ordenador a travez del puerto serial.
 
-### - Programa Basico para Destellar el LED
+## Programa para destellar el LED 
 
-## General rules
-
-Here are listed most obvious and important general rules. Please check them carefully before you continue with other chapters.
+El siguiente codigo es un ejemplo basico para destellar el DS1 conectado el pin RE2 del MCU, este codigo sera la base del resto de ejemplo que se veran en los laboratorios.
 
 - `clang-format` SHOULD be used with formatting file attached to this repository (version `15.x` is a minimum)
 - Use `C11` standard
