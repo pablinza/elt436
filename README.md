@@ -22,7 +22,9 @@ Circuito que hace lectura de dos canales analogicos y uno digital del joystick, 
 
 ## Programa para destellar el LED 
 
-El siguiente codigo es un ejemplo basico para destellar el DS1 conectado el pin RE2 del MCU, este codigo sera la base del resto de ejemplo que se veran en los laboratorios.
+El siguiente codigo es un ejemplo basico creado en MPLABX el cual permite destellar el LED  DS1 conectado el pin RE2 del MCU, este codigo sera la base del resto de ejemplo que se veran en los laboratorios. En el codigo se considera que el PIC16F887 opera a una frecuencia de 8MHz utilizando el Oscilador Interno. En caso de utilizar tinybootloader, se debe reservar el uso de memoria en MPLABX.
+La carpeta p0apptest.X coeesponde al proyecto generado con MPLABX version 6.25 y utiliza el compilador XC8 version 2.5 <br />
+La carpeta P0apptestasm.X contiene el proyecto generado con MPLABX version 6.25 utilizando el ensamblador PIC-AS <br />
 
 - `clang-format` SHOULD be used with formatting file attached to this repository (version `15.x` is a minimum)
 - Use `C11` standard
